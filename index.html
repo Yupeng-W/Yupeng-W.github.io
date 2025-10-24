@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZHANG MINGXUAN</title>
+    <title>Garage Sale</title>
     <style>
-        /* 基础重置 */
+        /* Base reset */
         * {
             margin: 0;
             padding: 0;
@@ -22,12 +22,12 @@
             margin: 0 auto;
         }
 
-        /* 容器 */
+        /* Container */
         .container {
             padding: 30px;
         }
 
-        /* 头部 */
+        /* Header */
         header {
             text-align: left;
             padding: 40px 0;
@@ -46,7 +46,7 @@
             opacity: 0.7;
         }
 
-        /* 网格布局 */
+        /* Grid layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -54,7 +54,7 @@
             margin-bottom: 40px;
         }
 
-        /* 卡片样式 */
+        /* Card styles */
         .card {
             margin-bottom: 40px;
         }
@@ -69,10 +69,9 @@
             letter-spacing: -0.5px;
             border-bottom: 1px dashed #999;
             padding-bottom: 10px;
-            color: #4A90E2; /* 蓝色标题 */
         }
 
-        /* 项目样式 */
+        /* Item styles */
         .item {
             margin-bottom: 30px;
         }
@@ -84,17 +83,9 @@
         .item-title {
             font-size: 1.2rem;
             margin-bottom: 8px;
-            color: #4A90E2; /* 蓝色项目标题 */
         }
 
-        .date {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        /* 个人信息网格 */
+        /* Profile grid */
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,7 +98,7 @@
             }
         }
 
-        /* 图像占位符 */
+        /* Image placeholder */
         .image-placeholder {
             width: 100%;
             height: 300px;
@@ -120,7 +111,7 @@
             margin-bottom: 20px;
         }
 
-        /* 列表样式 */
+        /* List styles */
         .info-list {
             list-style-type: none;
         }
@@ -131,34 +122,29 @@
         }
 
         .info-list li:before {
-            content: "■ ";
+            content: "→ ";
             margin-right: 10px;
-            color: #4A90E2; /* 蓝色项目符号 */
+            color: #000;
         }
 
-        .info-list strong {
-            color: #4A90E2; /* 蓝色粗体文字 */
+        /* Section */
+        section {
+            margin-bottom: 50px;
         }
 
-        /* 个人生活网格 */
-        .life-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .intro {
+            margin-bottom: 30px;
         }
 
-        .life-item {
-            padding: 15px;
-            border: 1px dashed #ccc;
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
         }
 
-        .life-item h3 {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #4A90E2; /* 蓝色生活项标题 */
-        }
-
-        /* 底部 */
+        /* Footer */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -168,117 +154,222 @@
             margin-top: 20px;
         }
 
-        /* 链接样式 */
+        /* Links */
         a {
-            color: #4A90E2; /* 蓝色链接 */
+            color: #000;
             text-decoration: none;
-            border-bottom: 1px solid #4A90E2;
+            border-bottom: 1px solid #000;
         }
 
         a:hover {
-            background-color: #4A90E2;
+            background-color: #000;
             color: #fff;
-            border-bottom: 1px solid #4A90E2;
-        }
-
-        /* 蓝色强调文本 */
-        .blue-text {
-            color: #4A90E2;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>ZHANG MINGXUAN</h1>
-            <div class="subtitle">HIGH SCHOOL STUDENT / RESEARCH ENTHUSIAST / COMMUNITY VOLUNTEER</div>
+            <h1>Garage Sale</h1>
+            <div class="subtitle">A small archive of things I once owned, loved, and almost forgot.<br>
+                Some are poems, some are zines, some are just objects that refused to leave.<br>
+                Feel free to browse.</div>
         </header>
 
-        <div class="profile-grid">
-            <div class="card">
-                <div class="image-placeholder">
-                    STUDENT PHOTO
+        <nav class="card">
+            <ul class="info-list">
+                <li><a href="#about">→ About</a> — who's behind the table</li>
+                <li><a href="#garage-sale">→ Garage Sale</a> — poems, zines & objects</li>
+                <li><a href="#customers">→ Customers</a> — letters, classrooms, communities</li>
+            </ul>
+        </nav>
+
+        <!-- Main image placeholder -->
+        <div class="image-placeholder">
+            Suggested visual/materials: A main image (e.g. your desk, flowers, pillow, stacked books)
+        </div>
+
+        <section id="about">
+            <h2 class="section-title">About</h2>
+            
+            <div class="profile-grid">
+                <div class="card">
+                    <p>I collect what I can't keep.</p>
+                    <p>I grew up between places, always packing and unpacking the same few things — my poems, my camera, my shark pillow.</p>
+                    <p>This site is a garage sale of memory: every item here was once mine, or maybe still is, in a way.</p>
+                    <p>I write, teach, and make small zines. I photograph on an iPhone 5c, the same one that's seen every version of me.</p>
+                    <p>You can find me through my words more easily than through a map.</p>
                 </div>
+                
+                <div class="card">
+                    <!-- Personal photo placeholder -->
+                    <div class="image-placeholder">
+                        A photo of myself
+                    </div>
+                    
+                    <h3 class="card-title">Selected Research / Study</h3>
+                    <p>I've explored questions that have followed me for years — the kind that feel too big for notebooks but too personal to ignore.</p>
+                    <p>My research on [论文主题] taught me not just about the subject, but about how I think, observe, and connect ideas.<br>
+                    It's part of who I am, and part of the way I see the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="garage-sale">
+            <h2 class="section-title">Garage Sale</h2>
+            
+            <div class="intro">
+                <p><strong>Everything here used to belong to me — or maybe I belonged to it.</strong><br>
+                Click on an item to open its story.</p>
             </div>
             
-            <div class="card">
-                <h2 class="card-title">PROFILE</h2>
-                <ul class="info-list">
-                    <li><strong>School:</strong> Beijing No.1 High School</li>
-                    <li><strong>Grade:</strong> Senior 3</li>
-                    <li><strong>Email:</strong> zhangmingxuan@example.com</li>
-                    <li><strong>Interests:</strong> <span class="blue-text">Programming, Robotics, AI, Reading</span></li>
-                    <li><strong>Location:</strong> Beijing, China</li>
-                </ul>
+            <div class="grid">
+                <div class="card">
+                    <div class="item">
+                        <h3 class="item-title">Poetry Collection</h3>
+                        <p>These are the poems I wrote when I was learning to name loneliness.<br>
+                        They were never meant to be published — just folded, kept in drawers, read under warm yellow light.<br>
+                        Some of them still breathe when I open the file.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Zines</h3>
+                        <p>five small zines I stitched by hand.<br>
+                        I like how photocopiers flatten time — how every page feels both disposable and sacred.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">iPhone 5c</h3>
+                        <p>My first camera and my longest companion.<br>
+                        It's scratched, slow, stubborn — but it saw everything before I knew how to frame it.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Shark Pillow</h3>
+                        <p>He's been with me since I was twelve.<br>
+                        He's soft, slightly greyed, smells like childhood and detergent.<br>
+                        He knows all my secrets and still sleeps through them.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Books & Poetry I Love</h3>
+                        <p>Books that shaped my syntax and made my silences feel less empty.<br>
+                        Some are underlined, some are stained by tears or coffee.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Excerpt Notebook</h3>
+                        <p>My notebook of borrowed sentences — words I wish I'd written first.<br>
+                        Ink, glue, and uneven pages; all in my handwriting that changes with the weather.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="item">
+                        <h3 class="item-title">Opera Sleeves & Fan</h3>
+                        <p>My quiet rebellion: I learned how to move like someone from another century.<br>
+                        The fan folds like memory — soft, creased, never truly closed.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
+                        <p>Worn thin at the toes, soft with sweat and stage dust.<br>
+                        I keep them as proof that I once believed grace could save me.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Flowers I Planted</h3>
+                        <p>I grew them slowly, one pot at a time.<br>
+                        They watched me as I wrote, as I procrastinated, as I stared out windows I couldn't leave.<br>
+                        Every bloom feels like a small victory, every wilt a gentle reminder.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Photography & Albums</h3>
+                        <p>My collection of photo books and albums.<br>
+                        I like flipping through them slowly, touching the pages, tracing the captured light.<br>
+                        Each image teaches me to see again.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Coffee Cup</h3>
+                        <p>This cup has been with me for years.<br>
+                        It carries the warmth of countless coffees, late-night studying, and quiet mornings.<br>
+                        More than a cup, it holds a dream — the university I longed for, the future I imagined.<br>
+                        Every sip reminds me of where I came from and the path I'm still chasing.</p>
+                    </div>
+                    
+                    <div class="item">
+                        <h3 class="item-title">Class Publication (Elementary → Middle School)</h3>
+                        <p><strong>Class Publication</strong><br>
+                        From elementary through middle school, I ran the class publication.<br>
+                        Every issue was a small universe: I collected classmates' stories, poems, drawings, and essays,<br>
+                        edited them, and made sure they were ready to be printed and shared.<br>
+                        Being the editor wasn't just about organizing papers — it was about listening to voices,<br>
+                        preserving small sparks of creativity, and giving them a place to be seen.</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <h2 class="card-title">ABOUT</h2>
-            <p>I am a <span class="blue-text">high school student</span> passionate about <span class="blue-text">science and technology</span>, especially <span class="blue-text">artificial intelligence</span> and <span class="blue-text">robotics</span>. I actively participate in research projects and community service activities, hoping to pursue a career in related fields in the future.</p>
-            <p>Through three years of high school, I've learned the importance of <span class="blue-text">teamwork</span> and <span class="blue-text">perseverance</span>. I believe that continuous learning and practice can contribute positively to society.</p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h2 class="card-title">RESEARCH</h2>
-                <div class="item">
-                    <h3 class="item-title">Deep Learning Based Image Recognition Project</h3>
-                    <div class="date">Sep 2023 - Mar 2024</div>
-                    <p>Developed an <span class="blue-text">image recognition system</span> based on <span class="blue-text">convolutional neural networks</span> under the guidance of school's innovation lab. Responsible for <span class="blue-text">data collection</span>, <span class="blue-text">model training</span> and <span class="blue-text">result analysis</span>. Won first prize at the municipal youth science and technology innovation competition.</p>
+        <section id="customers">
+            <h2 class="section-title">Customers</h2>
+            
+            <div class="intro">
+                <p><strong>People who showed up, stayed for a while, and left something behind.</strong><br>
+                Not clients — just witnesses.<br>
+                Here, I share moments of teaching, community, and correspondence that have shaped me.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">Teaching</h3>
+                    <p>I once taught poems to children who had never written one before.<br>
+                    They read about stars, rain, and ghosts — and suddenly the classroom felt holy.<br>
+                    I didn't teach them how to write. They taught me how to listen.</p>
+                    
+                    <div class="image-placeholder">
+                        Materials / Display Suggestions:<br>
+                        Class videos and photos<br>
+                        Students' poems translated into Chinese (5 pieces)<br>
+                        And many photos of poems written by students
+                    </div>
                 </div>
-                <div class="item">
-                    <h3 class="item-title">Intelligent Robot Path Planning Algorithm Research</h3>
-                    <div class="date">Oct 2022 - May 2023</div>
-                    <p>Collaborated with classmates to research <span class="blue-text">autonomous navigation</span> of robots in complex environments, proposed an improved <span class="blue-text">A* algorithm</span> that effectively increased the efficiency and accuracy of path planning.</p>
+                
+                <div class="card">
+                    <h3 class="card-title">Community / Projects</h3>
+                    <p>I've been part of several communities and clubs where I could share poetry and ideas:</p>
+                    <ul class="info-list">
+                        <li>Slam Poetry Club — performing and experiencing the energy of words aloud</li>
+                        <li>Spittoon Club — where I recited and shared my own poems, exploring voice and presence</li>
+                        <li>School Journal — contributing to the school publication, learning editorial work and collaboration</li>
+                    </ul>
+                    
+                    <div class="image-placeholder">
+                        Display suggestions:<br>
+                        Photos and club introductions<br>
+                        Performance videos and photos<br>
+                        School journal group photo
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Letters / Messages</h3>
+                    <p><strong>Notes, texts, cards — moments of being understood.</strong></p>
+                    <p>To: my teacher, who said "your silence is a kind of poem."<br>
+                    For: patience, feedback, kindness.<br>
+                    Paid: eternal gratitude.</p>
+                    
+                    <div class="image-placeholder">
+                        Letters/gifts with friends/teachers<br>
+                        Multiple photos showing interpersonal relationships
+                    </div>
                 </div>
             </div>
-
-            <div class="card">
-                <h2 class="card-title">COMMUNITY</h2>
-                <div class="item">
-                    <h3 class="item-title">Volunteer Teacher for Elderly Smartphone Training</h3>
-                    <div class="date">Jul 2023 - Present</div>
-                    <p>Provide weekly <span class="blue-text">smartphone usage training</span> for elderly people in the community, helping them master common apps like <span class="blue-text">WeChat</span>, <span class="blue-text">Alipay</span>, and <span class="blue-text">Didi</span>. Bridging the digital divide for the elderly generation.</p>
-                </div>
-                <div class="item">
-                    <h3 class="item-title">Campus Environmental Ambassador</h3>
-                    <div class="date">Sep 2022 - Jun 2023</div>
-                    <p>Organized and participated in campus <span class="blue-text">waste sorting campaigns</span>, designed <span class="blue-text">promotional posters</span> and held lectures, effectively raising environmental awareness among students.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2 class="card-title">PUBLICATIONS</h2>
-            <div class="item">
-                <h3 class="item-title">"Exploring Artificial Intelligence Applications from a High School Student's Perspective"</h3>
-                <div class="date">Youth Science and Technology Review, Issue 5, 2023</div>
-                <p>Published a <span class="blue-text">review article</span> on the application of <span class="blue-text">artificial intelligence</span> in daily life, analyzing the current status and future trends of <span class="blue-text">AI technology</span> from a high school student's perspective.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2 class="card-title">PERSONAL LIFE</h2>
-            <div class="life-grid">
-                <div class="life-item">
-                    <h3>Interests</h3>
-                    <p>In my spare time, I enjoy <span class="blue-text">programming</span> and making small <span class="blue-text">electronic projects</span>. I also love reading <span class="blue-text">science fiction novels</span> and <span class="blue-text">technology books</span>. Additionally, I am a core member of the school <span class="blue-text">robotics club</span>.</p>
-                </div>
-                <div class="life-item">
-                    <h3>Reflections</h3>
-                    <p>High school has taught me the importance of <span class="blue-text">teamwork</span>. Through participating in various projects, I have learned how to <span class="blue-text">collaborate</span> with people from different backgrounds and maintain a positive attitude in the face of challenges.</p>
-                </div>
-                <div class="life-item">
-                    <h3>Future Goals</h3>
-                    <p>I plan to study <span class="blue-text">computer science</span> or <span class="blue-text">artificial intelligence</span> in college. I hope to contribute to the development of <span class="blue-text">technology</span> that can improve people's lives and solve real-world problems.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <footer>
-            <p>&copy; 2024 ZHANG MINGXUAN. ALL RIGHTS RESERVED.</p>
-            <p>Contact: <a href="mailto:zhangmingxuan@example.com">zhangmingxuan@example.com</a></p>
+            <p>&copy; 2024 Garage Sale. ALL RIGHTS RESERVED.</p>
         </footer>
     </div>
 </body>
