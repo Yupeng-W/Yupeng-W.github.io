@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张教授的个人网站</title>
+    <title>High School Student's Personal Website</title>
     <style>
         * {
             margin: 0;
@@ -12,576 +12,672 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8f9fa;
-        }
-
-        /* 导航栏样式 */
-        .navbar {
             background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Main Container */
+        .container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            min-height: 100vh;
         }
 
-        .logo {
+        /* Left Fixed Sidebar */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #eee;
+            color: white;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-title {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #333;
+            color: white;
+            text-align: center;
+            margin-bottom: 1rem;
         }
 
+        .sidebar-description {
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Right Content Area */
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 2rem 3rem;
+            max-width: calc(100% - 300px);
+        }
+
+        /* Navigation Menu */
         .nav-menu {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+            z-index: 100;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
             display: flex;
             list-style: none;
             gap: 2rem;
+            padding: 0 1rem;
         }
 
         .nav-link {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 400;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
 
         .nav-link:hover {
-            color: #26c9ff;
+            color: #667eea;
+            background-color: rgba(102, 126, 234, 0.1);
         }
 
-        /* 主要内容区域 */
-        .main-content {
-            margin-top: 80px;
-            min-height: 100vh;
-        }
-
-        .section {
-            padding: 4rem 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* 首页英雄区域 */
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .nav-link.active {
             color: white;
-            text-align: center;
-            padding: 6rem 0;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             font-weight: bold;
         }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
         }
 
-        .hero-description {
-            font-size: 1.1rem;
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Welcome Section Styles */
+        .welcome-content {
             max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
         }
 
-        /* 卡片样式 */
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .card-title {
-            font-size: 1.8rem;
+        .welcome-title {
+            font-size: 2.5rem;
             color: #333;
             margin-bottom: 1rem;
             font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .card-content {
+        .welcome-subtitle {
+            font-size: 1.2rem;
             color: #666;
-            line-height: 1.8;
+            margin-bottom: 0.5rem;
         }
 
-        /* 网格布局 */
-        .grid {
+        .welcome-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .school-info {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .school-info h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .school-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Research Section Styles */
+        .research-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* 图片占位符 */
-        .image-placeholder {
+        .research-item {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .research-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .research-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Publications Styles */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .publication-item {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-image {
             width: 100%;
-            height: 200px;
-            background-color: #e9ecef;
-            border-radius: 8px;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6c757d;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            border: 2px dashed #ced4da;
-        }
-
-        /* 页面标题 */
-        .page-title {
-            font-size: 2.5rem;
-            color: #333;
-            text-align: center;
-            margin-bottom: 3rem;
-            font-weight: bold;
-        }
-
-        /* 按钮样式 */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background-color: #26c9ff;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background-color: #1ba8d1;
-        }
-
-        /* 隐藏内容 */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* 发布物列表样式 */
-        .publication-item {
-            border-left: 4px solid #26c9ff;
-            padding-left: 1rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
         }
 
         .publication-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .publication-details {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
         }
 
         .publication-description {
-            color: #555;
+            color: #666;
             line-height: 1.6;
+            text-align: left;
+            font-size: 0.95rem;
+            padding: 0 1rem 1.5rem;
+        }
+
+        .publication-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .publication-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Community Activities Styles */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .community-item {
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .community-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .community-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .community-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* List Styles */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .custom-list li:before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+
+            .main-content {
+                margin-left: 250px;
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .research-grid,
+            .publications-grid,
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Additional Color Accents */
+        .highlight-text {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">张教授的学术空间</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link" onclick="showPage('home')">首页</a></li>
-                <li><a href="#research" class="nav-link" onclick="showPage('research')">研究工作</a></li>
-                <li><a href="#publications" class="nav-link" onclick="showPage('publications')">学术发表</a></li>
-                <li><a href="#community" class="nav-link" onclick="showPage('community')">社区活动</a></li>
-                <li><a href="#life" class="nav-link" onclick="showPage('life')">个人生活</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
+        <!-- Left Fixed Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-image">Personal Photo Placeholder</div>
+            <h1 class="sidebar-title">Alex Johnson</h1>
+            <p class="sidebar-description">
+                A passionate high school student dedicated to academic research and exploration in [Research Field]. 
+                Love thinking, dare to practice, and committed to making meaningful contributions in my young academic journey.
+            </p>
+            <div class="contact-info">
+                <a href="mailto:*******************" class="contact-btn">Contact Me</a>
+            </div>
+        </aside>
 
-    <!-- 主要内容 -->
-    <main class="main-content">
-        <!-- 首页内容 -->
-        <div id="home" class="page-content active">
-            <section class="hero-section">
-                <div class="container">
-                    <h1 class="hero-title">欢迎来到我的学术世界</h1>
-                    <p class="hero-subtitle">探索知识的边界，传承学术的精神</p>
-                    <p class="hero-description">
-                        作为一名致力于学术研究的教授，我专注于[研究领域描述占位]的深入探索。
-                        在这里，您可以了解我的最新研究成果、学术发表、社区贡献以及我的学术人生。
-                        欢迎与我一同踏上这段知识探索的旅程。
+        <!-- Right Main Content Area -->
+        <main class="main-content">
+            <!-- Navigation Menu -->
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#welcome" class="nav-link">Home</a></li>
+                    <li><a href="#research" class="nav-link">Research</a></li>
+                    <li><a href="#community" class="nav-link">Community</a></li>
+                    <li><a href="#publications" class="nav-link">Publications</a></li>
+                </ul>
+            </nav>
+
+            <!-- Welcome Section -->
+            <section id="welcome" class="section">
+                <div class="welcome-content">
+                    <h2 class="welcome-title">Welcome!</h2>
+                    <p class="welcome-subtitle"><strong><em>I am Alex Johnson</em></strong></p>
+                    <p class="welcome-subtitle"><strong>He/Him</strong></p>
+                    
+                    <div class="school-info">
+                        <h3>High School Student Information</h3>
+                        <p><strong>School:</strong> <span class="highlight-text">[High School Name]</span></p>
+                        <p><strong>Grade:</strong> <span class="highlight-text">[Grade Level]</span></p>
+                        <p><strong>Academic Focus:</strong> <span class="highlight-text">[Subject Areas of Interest]</span></p>
+                        <p><strong>Research Interests:</strong> <span class="highlight-text">[Specific Research Interest Description Placeholder]</span></p>
+                    </div>
+                    
+                    <p class="welcome-description">
+                        As a high school student, I am filled with passion and curiosity for academic research. Although young, 
+                        I firmly believe in the power of knowledge and strive to explore through learning and grow through exploration. 
+                        I hope to make some meaningful contributions in my areas of interest through my own efforts.
                     </p>
                 </div>
             </section>
 
-            <section class="section">
-                <div class="container">
-                    <h2 class="page-title">学术概览</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <div class="image-placeholder">研究领域图片占位</div>
-                            <h3 class="card-title">主要研究方向</h3>
-                            <div class="card-content">
-                                <p>我的研究主要集中在[具体研究领域]，特别关注[具体方向1]、[具体方向2]和[具体方向3]。
-                                通过多年的深入研究，我致力于推动该领域的理论发展和实际应用。</p>
-                                <p>近年来，我特别专注于[当前重点研究内容描述占位]，这项工作对于理解[相关理论或应用]具有重要意义。</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="image-placeholder">学术成就图片占位</div>
-                            <h3 class="card-title">学术成就</h3>
-                            <div class="card-content">
-                                <p>在过去的[X]年中，我已发表[数量]篇高质量学术论文，其中包括在顶级期刊如[期刊名称占位]上的重要发表。</p>
-                                <p>我的研究工作获得了同行的广泛认可，被引用超过[数量]次，H指数为[数值]。
-                                同时，我也积极参与学术界的各种活动，担任多个重要期刊的审稿人。</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="image-placeholder">教学活动图片占位</div>
-                            <h3 class="card-title">教学与指导</h3>
-                            <div class="card-content">
-                                <p>作为一名教育工作者，我深信教学与研究的相互促进。我主要讲授[课程名称1]、[课程名称2]等核心课程。</p>
-                                <p>至今已指导[数量]名博士生和[数量]名硕士生完成学业，他们中的许多人现在在学术界和产业界取得了优异的成就。
-                                我始终坚持因材施教，注重培养学生的独立思考能力和创新精神。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 研究工作页面 -->
-        <div id="research" class="page-content">
-            <section class="section">
-                <div class="container">
-                    <h2 class="page-title">研究工作</h2>
-                    
-                    <div class="card">
-                        <h3 class="card-title">当前研究项目</h3>
-                        <div class="image-placeholder">研究项目图片占位</div>
-                        <div class="card-content">
-                            <h4 style="color: #26c9ff; margin-bottom: 1rem;">项目一：[项目名称占位]</h4>
-                            <p><strong>项目简介：</strong>[详细的项目描述占位，包括研究目标、方法论、预期成果等。这个项目旨在解决[具体问题]，采用[研究方法]进行深入分析。]</p>
-                            <p><strong>研究团队：</strong>[团队成员描述占位]</p>
-                            <p><strong>资助机构：</strong>[资助机构名称占位]</p>
-                            <p><strong>项目周期：</strong>[起始时间] - [结束时间]</p>
+            <!-- Research Section -->
+            <section id="research" class="section">
+                <h2 class="section-title">Research Work</h2>
+                
+                <div class="research-grid">
+                    <div class="research-item">
+                        <h3 class="research-title">Research Interest I: [Research Field Name]</h3>
+                        <div class="research-description">
+                            <p>As a high school student, I have developed a strong interest in <span class="gradient-bg">[Specific Research Field]</span>. Through extracurricular reading and self-directed learning, I began exploring the foundational knowledge in this field.</p>
+                            <p>Current learning focuses include:</p>
+                            <ul class="custom-list">
+                                <li>[Fundamental Theory Learning Content]</li>
+                                <li>[Practical Projects or Experiments]</li>
+                                <li>[Related Literature Reading]</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">核心研究领域</h3>
-                        <div class="grid">
-                            <div>
-                                <div class="image-placeholder">研究领域1图片占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">领域一：[研究领域名称]</h4>
-                                <p>在这个领域中，我专注于[具体研究内容描述占位]。通过[研究方法]，我们发现了[重要发现或贡献]。这项工作对于理解[相关理论]具有重要意义。</p>
-                            </div>
-                            <div>
-                                <div class="image-placeholder">研究领域2图片占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">领域二：[研究领域名称]</h4>
-                                <p>这个研究方向关注[具体问题或现象]。我们开发了[新方法或理论]，为解决[实际问题]提供了新的思路和工具。</p>
-                            </div>
+                    <div class="research-item">
+                        <h3 class="research-title">Research Interest II: [Research Field Name]</h3>
+                        <div class="research-description">
+                            <p>In this research direction, I gradually gained deeper understanding of the frontier developments in this field by participating in <span class="gradient-bg">[Related Activities or Projects]</span>.</p>
+                            <p>Learning achievements:</p>
+                            <ul class="custom-list">
+                                <li>[Specific Learning Achievement 1]</li>
+                                <li>[Specific Learning Achievement 2]</li>
+                                <li>[Participated Projects or Competitions]</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">研究方法与工具</h3>
-                        <div class="card-content">
-                            <p>在研究过程中，我主要采用以下方法和工具：</p>
-                            <ul style="margin-left: 2rem; margin-top: 1rem;">
-                                <li><strong>[方法1]：</strong>[方法描述占位]</li>
-                                <li><strong>[方法2]：</strong>[方法描述占位]</li>
-                                <li><strong>[工具/软件]：</strong>[工具使用描述占位]</li>
-                                <li><strong>[实验设备]：</strong>[设备使用描述占位]</li>
+                    <div class="research-item">
+                        <h3 class="research-title">Current Project</h3>
+                        <div class="research-description">
+                            <p><strong>Project Name:</strong> <span class="highlight-text">[High School Research Project Name]</span></p>
+                            <p><strong>Supervisor:</strong> <span class="highlight-text">[Teacher Name]</span></p>
+                            <p><strong>Project Duration:</strong> <span class="highlight-text">[Start Time] - [Expected End Time]</span></p>
+                            <p>This project gives me the opportunity to combine theoretical knowledge with practical applications, exploring <span class="gradient-bg">[Research Questions]</span> through [Specific Research Methods]. Currently completed [Progress Description].</p>
+                        </div>
+                    </div>
+
+                    <div class="research-item">
+                        <h3 class="research-title">Academic Activity Participation</h3>
+                        <div class="research-description">
+                            <p>Actively participate in various academic activities to broaden horizons and enhance abilities:</p>
+                            <ul class="custom-list">
+                                <li>Participated in [Academic Competition Name] ([Year])</li>
+                                <li>Attended [Academic Lectures or Conference Names]</li>
+                                <li>Joined [Research Summer Camps or Study Activities]</li>
+                                <li>Member of [Academic Clubs or Interest Groups]</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <!-- 学术发表页面 -->
-        <div id="publications" class="page-content">
-            <section class="section">
-                <div class="container">
-                    <h2 class="page-title">学术发表</h2>
-                    
-                    <div class="card">
-                        <h3 class="card-title">近期重要论文</h3>
-                        <div class="card-content">
-                            <div class="publication-item">
-                                <div class="publication-title">[论文标题占位] - 一项关于[研究主题]的创新研究</div>
-                                <div class="publication-details">
-                                    作者：张教授, [合作者姓名占位] | 期刊：[期刊名称占位] | 年份：2024
-                                </div>
-                                <div class="publication-description">
-                                    这篇论文探讨了[具体研究问题]，提出了[新理论或方法]。研究结果表明[主要发现占位]，为该领域的发展提供了重要贡献。
-                                </div>
-                            </div>
-
-                            <div class="publication-item">
-                                <div class="publication-title">[论文标题占位] - [副标题描述]</div>
-                                <div class="publication-details">
-                                    作者：张教授, [合作者团队] | 会议：[会议名称占位] | 年份：2023
-                                </div>
-                                <div class="publication-description">
-                                    本研究通过[研究方法]分析了[研究对象]，发现了[重要发现]。这项工作被同行评价为[评价描述占位]。
-                                </div>
-                            </div>
-
-                            <div class="publication-item">
-                                <div class="publication-title">[专著标题占位] - 关于[研究领域]的系统性研究</div>
-                                <div class="publication-details">
-                                    作者：张教授 | 出版社：[出版社名称占位] | 年份：2023
-                                </div>
-                                <div class="publication-description">
-                                    这部专著系统性地总结了我在[研究领域]多年的研究成果，全书共[页数]页，包含[章节数量]个章节，全面阐述了[主要内容描述占位]。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">研究影响力</h3>
-                        <div class="grid">
-                            <div>
-                                <div class="image-placeholder">引用统计图占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">学术影响</h4>
-                                <p>总引用次数：[数量] | H指数：[数值] | i10指数：[数值]</p>
-                                <p>我的研究工作在国际学术界产生了重要影响，多篇论文成为该领域的经典文献。</p>
-                            </div>
-                            <div>
-                                <div class="image-placeholder">合作网络图占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">国际合作</h4>
-                                <p>与[数量]个国家的[数量]所知名大学建立了长期合作关系，共同推进前沿研究。</p>
-                                <p>主要合作机构包括：[机构1]、[机构2]、[机构3]等。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 社区活动页面 -->
-        <div id="community" class="page-content">
-            <section class="section">
-                <div class="container">
-                    <h2 class="page-title">社区活动与服务</h2>
-                    
-                    <div class="card">
-                        <h3 class="card-title">学术服务</h3>
-                        <div class="card-content">
-                            <div class="grid">
-                                <div>
-                                    <div class="image-placeholder">期刊编辑工作图片占位</div>
-                                    <h4 style="color: #26c9ff; margin-bottom: 1rem;">期刊编辑工作</h4>
-                                    <ul style="margin-left: 1rem;">
-                                        <li>担任《[期刊名称占位]》副主编（2022-至今）</li>
-                                        <li>《[期刊名称占位]》编委会成员（2020-至今）</li>
-                                        <li>为[数量]个国际期刊担任审稿人</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <div class="image-placeholder">学术会议图片占位</div>
-                                    <h4 style="color: #26c9ff; margin-bottom: 1rem;">会议组织</h4>
-                                    <ul style="margin-left: 1rem;">
-                                        <li>[会议名称占位]大会主席（2023年）</li>
-                                        <li>[国际会议名称]程序委员会主席（2022年）</li>
-                                        <li>多次担任重要学术会议的主题演讲嘉宾</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">公益教育活动</h3>
-                        <div class="card-content">
-                            <div class="image-placeholder">公益教育活动图片占位</div>
-                            <h4 style="color: #333; margin-bottom: 1rem;">科普教育推广</h4>
-                            <p>我积极参与各类科普教育活动，致力于将学术研究成果转化为公众能够理解和受益的知识：</p>
-                            <ul style="margin-left: 2rem; margin-top: 1rem;">
-                                <li><strong>中小学科普讲座：</strong>每年为[数量]所中小学开展科普讲座，激发青少年对科学的兴趣</li>
-                                <li><strong>社区科学活动：</strong>组织社区居民参与科学实验和观察活动</li>
-                                <li><strong>在线教育平台：</strong>在[平台名称]开设公开课程，累计学习者超过[数量]人</li>
-                                <li><strong>科普文章撰写：</strong>为科普杂志撰写文章[数量]篇，传播科学知识</li>
+            <!-- Community Activities Section -->
+            <section id="community" class="section">
+                <h2 class="section-title">Community Activities</h2>
+                
+                <div class="community-grid">
+                    <div class="community-item">
+                        <h3 class="community-title">School Activities</h3>
+                        <div class="community-description">
+                            <p>Actively participate in various school activities, leveraging my strengths:</p>
+                            <ul class="custom-list">
+                                <li>Serve as <span class="highlight-text">[Student Council Position or Class Position]</span></li>
+                                <li>Participate in <span class="highlight-text">[School Club Activities]</span></li>
+                                <li>Organize <span class="highlight-text">[Specific Activity Names]</span></li>
+                                <li>Participate in <span class="highlight-text">[Subject Competitions or Cultural Activities]</span></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">专业咨询与合作</h3>
-                        <div class="grid">
-                            <div>
-                                <div class="image-placeholder">政策咨询图片占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">政策咨询</h4>
-                                <p>为政府部门提供专业咨询服务，参与[政策领域]相关政策的制定和评估工作。担任[委员会名称]专家委员。</p>
-                            </div>
-                            <div>
-                                <div class="image-placeholder">产业合作图片占位</div>
-                                <h4 style="color: #333; margin: 1rem 0;">产业合作</h4>
-                                <p>与[数量]家企业建立产学研合作关系，推动科研成果的产业化应用，为社会经济发展贡献力量。</p>
-                            </div>
+                    <div class="community-item">
+                        <h3 class="community-title">Volunteer Service</h3>
+                        <div class="community-description">
+                            <p>Give back to society through volunteer service and develop social responsibility:</p>
+                            <ul class="custom-list">
+                                <li><span class="highlight-text">[Volunteer Service Project 1]</span> - [Service Time and Content]</li>
+                                <li><span class="highlight-text">[Volunteer Service Project 2]</span> - [Service Recipients and Outcomes]</li>
+                                <li>Participate in <span class="highlight-text">[Community Public Welfare Activities]</span></li>
+                                <li>Provide <span class="highlight-text">[Specific Help]</span> for [Specific Groups]</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="community-item">
+                        <h3 class="community-title">Academic Sharing</h3>
+                        <div class="community-description">
+                            <p>Share learning experiences with peers for mutual progress:</p>
+                            <ul class="custom-list">
+                                <li>Share learning experiences on <span class="highlight-text">[Platform or Occasion]</span></li>
+                                <li>Provide <span class="highlight-text">[Subject]</span> tutoring for classmates</li>
+                                <li>Participate in <span class="highlight-text">[Study Groups or Reading Clubs]</span></li>
+                                <li>Write <span class="highlight-text">[Learning Insights or Experience Articles]</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="community-item">
+                        <h3 class="community-title">Extracurricular Practice</h3>
+                        <div class="community-description">
+                            <p>Enrich experience and enhance comprehensive abilities through practical activities:</p>
+                            <ul class="custom-list">
+                                <li>Participate in <span class="highlight-text">[Internship or Practice Projects]</span></li>
+                                <li>Conduct <span class="highlight-text">[Social Research Activities]</span></li>
+                                <li>Participate in <span class="highlight-text">[Cultural Exchange Activities]</span></li>
+                                <li>Develop <span class="highlight-text">[Innovation and Entrepreneurship Projects]</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <!-- 个人生活页面 -->
-        <div id="life" class="page-content">
-            <section class="section">
-                <div class="container">
-                    <h2 class="page-title">个人生活简介</h2>
-                    
-                    <div class="card">
-                        <h3 class="card-title">个人简介</h3>
-                        <div class="grid">
-                            <div>
-                                <div class="image-placeholder">个人照片占位</div>
-                            </div>
-                            <div class="card-content">
-                                <p>我是一名热爱学术研究和教育事业的教授。在[年份]年获得[学位]学位后，我一直致力于[研究领域]的探索和教学工作。</p>
-                                <p><strong>教育背景：</strong></p>
-                                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                                    <li>[学位] - [大学名称] ([年份])</li>
-                                    <li>[学位] - [大学名称] ([年份])</li>
-                                    <li>[学位] - [大学名称] ([年份])</li>
-                                </ul>
-                                <p style="margin-top: 1rem;"><strong>工作经历：</strong></p>
-                                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                                    <li>[职位] - [机构名称] ([年份]-至今)</li>
-                                    <li>[职位] - [机构名称] ([年份]-[年份])</li>
-                                </ul>
-                            </div>
+            <!-- Publications Section -->
+            <section id="publications" class="section">
+                <h2 class="section-title">Publications</h2>
+                <h3 style="font-size: 1.4rem; color: #667eea; margin-bottom: 2rem;">My Works</h3>
+                
+                <div class="publications-grid">
+                    <div class="publication-item">
+                        <div class="publication-image">Work Cover Image Placeholder</div>
+                        <h4 class="publication-title">Academic Work Title Placeholder</h4>
+                        <div class="publication-description">
+                            <p>This is an academic work I completed during high school, mainly exploring <span class="gradient-bg">[Research Topic]</span>. Through in-depth literature research and practical analysis, I gained a deeper understanding of [Specific Issues].</p>
+                            <p>The work was published on <span class="highlight-text">[Publication Platform or Journal]</span>. Click 
+                            <a href="#" class="publication-link"><strong>HERE</strong></a> to view detailed content.</p>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">兴趣爱好</h3>
-                        <div class="card-content">
-                            <div class="grid">
-                                <div>
-                                    <div class="image-placeholder">阅读爱好图片占位</div>
-                                    <h4 style="color: #26c9ff; margin-bottom: 1rem;">阅读与写作</h4>
-                                    <p>除了学术研究，我热爱阅读各类书籍，特别是[类型]类作品。我相信广泛的阅读能够开拓视野，为学术研究提供更多灵感。</p>
-                                </div>
-                                <div>
-                                    <div class="image-placeholder">运动爱好图片占位</div>
-                                    <h4 style="color: #26c9ff; margin-bottom: 1rem;">运动健身</h4>
-                                    <p>我坚持每周进行[运动类型]锻炼，认为健康的身体是从事学术工作的重要基础。运动也帮助我保持清晰的思维和充沛的精力。</p>
-                                </div>
-                                <div>
-                                    <div class="image-placeholder">旅行爱好图片占位</div>
-                                    <h4 style="color: #26c9ff; margin-bottom: 1rem;">旅行探索</h4>
-                                    <p>我喜欢在假期时间旅行，体验不同的文化和风景。这些经历不仅丰富了我的人生阅历，也为我的研究工作带来了新的视角。</p>
-                                </div>
-                            </div>
+                    <div class="publication-item">
+                        <div class="publication-image">Article Collection Image Placeholder</div>
+                        <h4 class="publication-title">Excellent Article Collection</h4>
+                        <div class="publication-description">
+                            <p>A collection of excellent articles I wrote during high school, including academic papers, reading reflections, social observations, and various other types of works.</p>
+                            <p>These articles showcase my thinking process and the growth trajectory of my writing abilities. Click 
+                            <a href="#" class="publication-link"><strong>HERE</strong></a> to read the full text.</p>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">生活哲学</h3>
-                        <div class="card-content">
-                            <div class="image-placeholder">生活哲学图片占位</div>
-                            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; font-style: italic;">
-                                "学而时习之，不亦说乎？" 这句古话一直是我的座右铭。我认为学习是一个终身的过程，
-                                无论是在学术研究中还是在日常生活中，我们都应该保持好奇心和学习的热情。
-                            </p>
-                            <p style="margin-top: 1.5rem; line-height: 1.8;">
-                                我始终相信，真正的学者不应该局限于象牙塔中，而应该将知识与现实世界相连接，
-                                用自己的专业知识为社会做出贡献。这也是我积极参与各种社会活动和公益事业的原因。
-                            </p>
-                            <p style="margin-top: 1.5rem; line-height: 1.8;">
-                                在工作与生活的平衡中，我学会了享受简单的快乐：一杯茶的清香、一本好书的陪伴、
-                                与学生们的深度讨论，以及与家人朋友共度的美好时光。这些都是我人生中最珍贵的财富。
-                            </p>
+                    <div class="publication-item">
+                        <div class="publication-image">Project Results Image Placeholder</div>
+                        <h4 class="publication-title">Research Project Results</h4>
+                        <div class="publication-description">
+                            <p>Showcasing the results of various research projects I participated in, including experimental reports, research analyses, innovative designs, etc.</p>
+                            <p>These projects allowed me to combine theoretical knowledge with practice, cultivating basic scientific research literacy. Click 
+                            <a href="#" class="publication-link"><strong>HERE</strong></a> to learn about project details.</p>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <script>
-        function showPage(pageId) {
-            // 隐藏所有页面内容
-            const allPages = document.querySelectorAll('.page-content');
-            allPages.forEach(page => page.classList.remove('active'));
-            
-            // 显示指定页面
-            document.getElementById(pageId).classList.add('active');
-            
-            // 更新导航链接状态
-            const allLinks = document.querySelectorAll('.nav-link');
-            allLinks.forEach(link => link.style.color = '#333');
-            event.target.style.color = '#26c9ff';
-            
-            // 滚动到顶部
-            window.scrollTo(0, 0);
-        }
-
-        // 平滑滚动效果
+        // Smooth scroll to specified sections
         document.addEventListener('DOMContentLoaded', function() {
             const links = document.querySelectorAll('.nav-link');
+            
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    showPage(targetId);
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Highlight current section navigation links
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
                 });
             });
         });
