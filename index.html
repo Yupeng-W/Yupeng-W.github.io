@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High School Student's Personal Website</title>
+    <title>Garage Sale</title>
     <style>
         * {
             margin: 0;
@@ -12,809 +12,531 @@
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
             color: #333;
-            background-color: #fff;
+            line-height: 1.4;
         }
 
-        /* Main Container */
         .container {
-            display: flex;
-            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* Left Fixed Sidebar */
-        .sidebar {
-            width: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 2rem;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            border-right: 1px solid #eee;
-            color: white;
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .profile-image {
-            width: 200px;
+        .title {
+            font-size: 36px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: normal;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            position: relative;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-card-image {
+            width: 100%;
             height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            font-size: 14px;
+            color: #666;
+            position: relative;
+            border-bottom: 1px solid #ddd;
         }
 
-        .sidebar-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-align: center;
-            margin-bottom: 1rem;
+        .nav-card-content {
+            padding: 15px;
         }
 
-        .sidebar-description {
-            color: rgba(255, 255, 255, 0.9);
-            text-align: center;
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .nav-card-title {
+            font-size: 16px;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 5px;
+            text-decoration: underline;
         }
 
-        .contact-info {
-            margin-top: 2rem;
-            text-align: center;
+        .nav-card-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
         }
 
-        .contact-btn {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+        /* Page sections - initially hidden */
+        .page-section {
+            display: none;
         }
 
-        .contact-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .page-section.active {
+            display: block;
         }
 
-        /* Right Content Area */
-        .main-content {
-            margin-left: 300px;
-            flex: 1;
-            padding: 2rem 3rem;
-            max-width: calc(100% - 300px);
+        /* Items grid for garage sale and customers */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
-        /* Navigation Menu */
-        .nav-menu {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 2rem;
-            z-index: 100;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .item {
+            background: #fff;
+            border: 1px solid #ddd;
+            position: relative;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
-        .nav-list {
+        .item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f5f5f5;
             display: flex;
-            list-style: none;
-            gap: 2rem;
-            padding: 0 1rem;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            position: relative;
+            border-bottom: 1px solid #ddd;
         }
 
-        .nav-link {
-            text-decoration: none;
+        .item-content {
+            padding: 15px;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 5px;
+            text-decoration: underline;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* About page specific styles */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
             color: #333;
-            font-weight: 400;
-            transition: all 0.3s;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
         }
 
-        .nav-link:hover {
-            color: #667eea;
-            background-color: rgba(102, 126, 234, 0.1);
+        .about-image {
+            width: 200px;
+            height: 200px;
+            background-color: #f5f5f5;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            border: 1px solid #ddd;
         }
 
-        .nav-link.active {
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-weight: bold;
+        .research-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
         }
 
-        /* Section Styles */
-        .section {
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #eee;
+        .research-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #000;
         }
 
-        .section:last-child {
+        /* Customers page specific styles */
+        .customers-section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .customers-section:last-child {
             border-bottom: none;
         }
 
         .section-title {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 2rem;
-            font-weight: bold;
-            position: relative;
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #000;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
-
-        /* Welcome Section Styles */
-        .welcome-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .welcome-title {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .welcome-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-description {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .school-info {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .school-info h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .school-info p {
-            color: #666;
-            margin-bottom: 0.5rem;
-            text-align: left;
-        }
-
-        /* Research Section Styles */
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .research-item {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .research-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .research-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .research-description {
-            color: #666;
+        .section-content {
+            font-size: 16px;
             line-height: 1.6;
-        }
-
-        /* Publications Styles */
-        .publications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .publication-item {
-            text-align: center;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-
-        .publication-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .publication-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .publication-title {
-            font-size: 1.2rem;
-            font-weight: bold;
             color: #333;
-            margin-bottom: 1rem;
-            padding: 0 1rem;
+            margin-bottom: 20px;
         }
 
-        .publication-description {
+        .media-placeholder {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
             color: #666;
-            line-height: 1.6;
-            text-align: left;
-            font-size: 0.95rem;
-            padding: 0 1rem 1.5rem;
+            margin: 10px 0;
         }
 
-        .publication-link {
-            color: #667eea;
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 14px;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            color: #333;
         }
 
-        .publication-link:hover {
-            color: #764ba2;
-            text-decoration: underline;
+        .back-button:hover {
+            background: #f5f5f5;
         }
 
-        /* Community Activities Styles */
-        .community-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .community-item {
-            padding: 1.5rem;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .community-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .community-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .community-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .community-description {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* List Styles */
-        .custom-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .custom-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .custom-list li:before {
-            content: "•";
-            color: #667eea;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .sidebar {
-                width: 250px;
-            }
-
-            .main-content {
-                margin-left: 250px;
-                padding: 2rem;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
-                flex-direction: column;
+                padding: 20px 15px;
             }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 1.5rem;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            
+            .title {
+                font-size: 28px;
             }
-
-            .profile-image {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 1rem;
-            }
-
-            .sidebar-title {
-                font-size: 1.3rem;
-            }
-
-            .sidebar-description {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-
-            .nav-menu {
-                margin-bottom: 1.5rem;
-                padding: 0.5rem 0;
-            }
-
-            .nav-list {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                justify-content: center;
-                padding: 0;
-            }
-
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
-            }
-
-            .welcome-content {
-                text-align: left;
-                padding: 0 0.5rem;
-            }
-
-            .welcome-title {
-                font-size: 2rem;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
-
-            .welcome-subtitle {
-                font-size: 1.1rem;
-                text-align: center;
-            }
-
-            .welcome-description {
-                text-align: left;
-                font-size: 1rem;
-                margin: 1rem 0;
-            }
-
-            .school-info {
-                margin: 1.5rem 0;
-                padding: 1rem;
-            }
-
-            .school-info h3 {
-                font-size: 1.2rem;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-                text-align: center;
-                margin-bottom: 1.5rem;
-            }
-
-            .research-grid,
-            .publications-grid,
-            .community-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .research-item,
-            .community-item {
-                padding: 1rem;
-            }
-
-            .research-title,
-            .community-title {
-                font-size: 1.1rem;
-            }
-
-            .publication-item {
-                margin-bottom: 1rem;
-            }
-
-            .publication-title {
-                font-size: 1.1rem;
-                padding: 0 0.5rem;
-            }
-
-            .publication-description {
-                padding: 0 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .custom-list li {
-                font-size: 0.9rem;
-                margin-bottom: 0.3rem;
+            
+            .navigation,
+            .items-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
             }
         }
 
-        /* Additional mobile optimizations */
         @media (max-width: 480px) {
-            .main-content {
-                padding: 0.5rem;
+            .navigation,
+            .items-grid {
+                grid-template-columns: 1fr;
             }
-
-            .welcome-title {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .nav-list {
-                gap: 0.3rem;
-            }
-
-            .nav-link {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.85rem;
-            }
-
-            .school-info {
-                padding: 0.8rem;
-            }
-
-            .research-item,
-            .community-item {
-                padding: 0.8rem;
-            }
-
-            .publication-image {
-                height: 200px;
-            }
-        }
-
-        /* Additional Color Accents */
-        .highlight-text {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .gradient-bg {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left Fixed Sidebar -->
-        <aside class="sidebar">
-            <div class="profile-image">Personal Photo Placeholder</div>
-            <h1 class="sidebar-title">Alex Johnson</h1>
-            <p class="sidebar-description">
-                A passionate high school student dedicated to academic research and exploration in [Research Field]. 
-                Love thinking, dare to practice, and committed to making meaningful contributions in my young academic journey.
-            </p>
-            <div class="contact-info">
-                <a href="mailto:*******************" class="contact-btn">Contact Me</a>
+        <!-- Home Page -->
+        <div id="home" class="page-section active">
+            <div class="header">
+                <h1 class="title">🏠 Garage Sale</h1>
+                <p class="subtitle">A small archive of things I once owned, loved, and almost forgot. Some are poems, some are zines, some are just objects that refused to leave.<br><br>Feel free to browse.</p>
             </div>
-        </aside>
 
-        <!-- Right Main Content Area -->
-        <main class="main-content">
-            <!-- Navigation Menu -->
-            <nav class="nav-menu">
-                <ul class="nav-list">
-                    <li><a href="#welcome" class="nav-link">Home</a></li>
-                    <li><a href="#research" class="nav-link">Research</a></li>
-                    <li><a href="#community" class="nav-link">Community</a></li>
-                    <li><a href="#publications" class="nav-link">Publications</a></li>
-                </ul>
-            </nav>
-
-            <!-- Welcome Section -->
-            <section id="welcome" class="section">
-                <div class="welcome-content">
-                    <h2 class="welcome-title">Welcome!</h2>
-                    <p class="welcome-subtitle"><strong><em>I am Alex Johnson</em></strong></p>
-                    <p class="welcome-subtitle"><strong>He/Him</strong></p>
-                    
-                    <div class="school-info">
-                        <h3>High School Student Information</h3>
-                        <p><strong>School:</strong> <span class="highlight-text">[High School Name]</span></p>
-                        <p><strong>Grade:</strong> <span class="highlight-text">[Grade Level]</span></p>
-                        <p><strong>Academic Focus:</strong> <span class="highlight-text">[Subject Areas of Interest]</span></p>
-                        <p><strong>Research Interests:</strong> <span class="highlight-text">[Specific Research Interest Description Placeholder]</span></p>
+            <div class="navigation">
+                <div class="nav-card" onclick="showPage('about')">
+                    <div class="nav-card-image">
+                        Personal Photo Placeholder
                     </div>
-                    
-                    <p class="welcome-description">
-                        As a high school student, I am filled with passion and curiosity for academic research. Although young, 
-                        I firmly believe in the power of knowledge and strive to explore through learning and grow through exploration. 
-                        I hope to make some meaningful contributions in my areas of interest through my own efforts.
-                    </p>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ About</h3>
+                        <p class="nav-card-description">who's behind the table</p>
+                    </div>
                 </div>
-            </section>
 
-            <!-- Research Section -->
-            <section id="research" class="section">
-                <h2 class="section-title">Research Work</h2>
+                <div class="nav-card" onclick="showPage('garage-sale')">
+                    <div class="nav-card-image">
+                        Books, Desk & Objects
+                    </div>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ Garage Sale</h3>
+                        <p class="nav-card-description">poems, zines & objects</p>
+                    </div>
+                </div>
+
+                <div class="nav-card" onclick="showPage('customers')">
+                    <div class="nav-card-image">
+                        Letters & Community
+                    </div>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ Customers</h3>
+                        <p class="nav-card-description">letters, classrooms, communities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">👧 About</h1>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <strong>About</strong><br>
+                    I collect what I can't keep.
+                </div>
+
+                <div class="about-image">
+                    My Photo Placeholder
+                </div>
+
+                <div class="about-text">
+                    I grew up between places, always packing and unpacking the same few things — my poems, my camera, my shark pillow.
+                </div>
+
+                <div class="about-text">
+                    This site is a garage sale of memory: every item here was once mine, or maybe still is, in a way.
+                </div>
+
+                <div class="about-text">
+                    I write, teach, and make small zines. I photograph on an iPhone 5c, the same one that's seen every version of me.
+                </div>
+
+                <div class="about-text">
+                    You can find me through my words more easily than through a map.
+                </div>
+
+                <div class="research-section">
+                    <h3 class="research-title">Selected Research / Study</h3>
+                    <div class="about-text">
+                        I've explored questions that have followed me for years — the kind that feel too big for notebooks but too personal to ignore.
+                    </div>
+                    <div class="about-text">
+                        My research on [论文主题] taught me not just about the subject, but about how I think, observe, and connect ideas. It's part of who I am, and part of the way I see the world.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Garage Sale Page -->
+        <div id="garage-sale" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">🧺 Garage Sale</h1>
+                <p class="subtitle">Everything here used to belong to me — or maybe I belonged to it. Click on an item to open its story.</p>
+            </div>
+
+            <div class="items-grid">
+                <div class="item">
+                    <div class="item-image">Poetry Collection Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Poetry Collection</h3>
+                        <p class="item-description">These are the poems I wrote when I was learning to name loneliness. They were never meant to be published — just folded, kept in drawers, read under warm yellow light. Some of them still breathe when I open the file.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Handmade Zines Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Zines</h3>
+                        <p class="item-description">Five small zines I stitched by hand. I like how photocopiers flatten time — how every page feels both disposable and sacred.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">iPhone 5c Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">iPhone 5c</h3>
+                        <p class="item-description">My first camera and my longest companion. It's scratched, slow, stubborn — but it saw everything before I knew how to frame it.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Shark Pillow Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Shark Pillow</h3>
+                        <p class="item-description">He's been with me since I was twelve. He's soft, slightly greyed, smells like childhood and detergent. He knows all my secrets and still sleeps through them.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Books & Poetry Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Books & Poetry I Love</h3>
+                        <p class="item-description">Books that shaped my syntax and made my silences feel less empty. Some are underlined, some are stained by tears or coffee.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Notebook Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Excerpt Notebook</h3>
+                        <p class="item-description">My notebook of borrowed sentences — words I wish I'd written first. Ink, glue, and uneven pages; all in my handwriting that changes with the weather.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Opera Sleeves & Fan Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Opera Sleeves & Fan</h3>
+                        <p class="item-description">My quiet rebellion: I learned how to move like someone from another century. The fan folds like memory — soft, creased, never truly closed.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Ballet Shoes Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
+                        <p class="item-description">Worn thin at the toes, soft with sweat and stage dust. I keep them as proof that I once believed grace could save me.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Flowers Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Flowers I Planted</h3>
+                        <p class="item-description">I grew them slowly, one pot at a time. They watched me as I wrote, as I procrastinated, as I stared out windows I couldn't leave. Every bloom feels like a small victory, every wilt a gentle reminder.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Photo Albums Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Photography & Albums</h3>
+                        <p class="item-description">My collection of photo books and albums. I like flipping through them slowly, touching the pages, tracing the captured light. Each image teaches me to see again.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Coffee Cup Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Coffee Cup</h3>
+                        <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Class Publication Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Class Publication (Elementary → Middle School)</h3>
+                        <p class="item-description">From elementary through middle school, I ran the class publication. Every issue was a small universe: I collected classmates' stories, poems, drawings, and essays, edited them, and made sure they were ready to be printed and shared. Being the editor wasn't just about organizing papers — it was about listening to voices, preserving small sparks of creativity, and giving them a place to be seen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Page -->
+        <div id="customers" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">💌 Customers</h1>
+                <p class="subtitle">People who showed up, stayed for a while, and left something behind. Not clients — just witnesses. Here, I share moments of teaching, community, and correspondence that have shaped me.</p>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Teaching</h3>
+                <div class="section-content">
+                    I once taught poems to children who had never written one before. They read about stars, rain, and ghosts — and suddenly the classroom felt holy. I didn't teach them how to write. They taught me how to listen.
+                </div>
+                <div class="media-placeholder">上课视频和照片</div>
+                <div class="media-placeholder">学生写的翻译成中文（5首）还有很多他们写的诗的图片</div>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Community / Projects</h3>
+                <div class="section-content">
+                    I've been part of several communities and clubs where I could share poetry and ideas:
+                </div>
                 
-                <div class="research-grid">
-                    <div class="research-item">
-                        <h3 class="research-title">Research Interest I: [Research Field Name]</h3>
-                        <div class="research-description">
-                            <p>As a high school student, I have developed a strong interest in <span class="gradient-bg">[Specific Research Field]</span>. Through extracurricular reading and self-directed learning, I began exploring the foundational knowledge in this field.</p>
-                            <p>Current learning focuses include:</p>
-                            <ul class="custom-list">
-                                <li>[Fundamental Theory Learning Content]</li>
-                                <li>[Practical Projects or Experiments]</li>
-                                <li>[Related Literature Reading]</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="research-item">
-                        <h3 class="research-title">Research Interest II: [Research Field Name]</h3>
-                        <div class="research-description">
-                            <p>In this research direction, I gradually gained deeper understanding of the frontier developments in this field by participating in <span class="gradient-bg">[Related Activities or Projects]</span>.</p>
-                            <p>Learning achievements:</p>
-                            <ul class="custom-list">
-                                <li>[Specific Learning Achievement 1]</li>
-                                <li>[Specific Learning Achievement 2]</li>
-                                <li>[Participated Projects or Competitions]</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="research-item">
-                        <h3 class="research-title">Current Project</h3>
-                        <div class="research-description">
-                            <p><strong>Project Name:</strong> <span class="highlight-text">[High School Research Project Name]</span></p>
-                            <p><strong>Supervisor:</strong> <span class="highlight-text">[Teacher Name]</span></p>
-                            <p><strong>Project Duration:</strong> <span class="highlight-text">[Start Time] - [Expected End Time]</span></p>
-                            <p>This project gives me the opportunity to combine theoretical knowledge with practical applications, exploring <span class="gradient-bg">[Research Questions]</span> through [Specific Research Methods]. Currently completed [Progress Description].</p>
-                        </div>
-                    </div>
-
-                    <div class="research-item">
-                        <h3 class="research-title">Academic Activity Participation</h3>
-                        <div class="research-description">
-                            <p>Actively participate in various academic activities to broaden horizons and enhance abilities:</p>
-                            <ul class="custom-list">
-                                <li>Participated in [Academic Competition Name] ([Year])</li>
-                                <li>Attended [Academic Lectures or Conference Names]</li>
-                                <li>Joined [Research Summer Camps or Study Activities]</li>
-                                <li>Member of [Academic Clubs or Interest Groups]</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="section-content">
+                    <strong>• Slam Poetry Club</strong> — performing and experiencing the energy of words aloud
                 </div>
-            </section>
-
-            <!-- Community Activities Section -->
-            <section id="community" class="section">
-                <h2 class="section-title">Community Activities</h2>
+                <div class="media-placeholder">照片，社团介绍</div>
                 
-                <div class="community-grid">
-                    <div class="community-item">
-                        <h3 class="community-title">School Activities</h3>
-                        <div class="community-description">
-                            <p>Actively participate in various school activities, leveraging my strengths:</p>
-                            <ul class="custom-list">
-                                <li>Serve as <span class="highlight-text">[Student Council Position or Class Position]</span></li>
-                                <li>Participate in <span class="highlight-text">[School Club Activities]</span></li>
-                                <li>Organize <span class="highlight-text">[Specific Activity Names]</span></li>
-                                <li>Participate in <span class="highlight-text">[Subject Competitions or Cultural Activities]</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="community-item">
-                        <h3 class="community-title">Volunteer Service</h3>
-                        <div class="community-description">
-                            <p>Give back to society through volunteer service and develop social responsibility:</p>
-                            <ul class="custom-list">
-                                <li><span class="highlight-text">[Volunteer Service Project 1]</span> - [Service Time and Content]</li>
-                                <li><span class="highlight-text">[Volunteer Service Project 2]</span> - [Service Recipients and Outcomes]</li>
-                                <li>Participate in <span class="highlight-text">[Community Public Welfare Activities]</span></li>
-                                <li>Provide <span class="highlight-text">[Specific Help]</span> for [Specific Groups]</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="community-item">
-                        <h3 class="community-title">Academic Sharing</h3>
-                        <div class="community-description">
-                            <p>Share learning experiences with peers for mutual progress:</p>
-                            <ul class="custom-list">
-                                <li>Share learning experiences on <span class="highlight-text">[Platform or Occasion]</span></li>
-                                <li>Provide <span class="highlight-text">[Subject]</span> tutoring for classmates</li>
-                                <li>Participate in <span class="highlight-text">[Study Groups or Reading Clubs]</span></li>
-                                <li>Write <span class="highlight-text">[Learning Insights or Experience Articles]</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="community-item">
-                        <h3 class="community-title">Extracurricular Practice</h3>
-                        <div class="community-description">
-                            <p>Enrich experience and enhance comprehensive abilities through practical activities:</p>
-                            <ul class="custom-list">
-                                <li>Participate in <span class="highlight-text">[Internship or Practice Projects]</span></li>
-                                <li>Conduct <span class="highlight-text">[Social Research Activities]</span></li>
-                                <li>Participate in <span class="highlight-text">[Cultural Exchange Activities]</span></li>
-                                <li>Develop <span class="highlight-text">[Innovation and Entrepreneurship Projects]</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="section-content">
+                    <strong>• Spittoon Club</strong> — where I recited and shared my own poems, exploring voice and presence
                 </div>
-            </section>
-
-            <!-- Publications Section -->
-            <section id="publications" class="section">
-                <h2 class="section-title">Publications</h2>
-                <h3 style="font-size: 1.4rem; color: #667eea; margin-bottom: 2rem;">My Works</h3>
+                <div class="media-placeholder">表演的视频和照片</div>
                 
-                <div class="publications-grid">
-                    <div class="publication-item">
-                        <div class="publication-image">Work Cover Image Placeholder</div>
-                        <h4 class="publication-title">Academic Work Title Placeholder</h4>
-                        <div class="publication-description">
-                            <p>This is an academic work I completed during high school, mainly exploring <span class="gradient-bg">[Research Topic]</span>. Through in-depth literature research and practical analysis, I gained a deeper understanding of [Specific Issues].</p>
-                            <p>The work was published on <span class="highlight-text">[Publication Platform or Journal]</span>. Click 
-                            <a href="#" class="publication-link"><strong>HERE</strong></a> to view detailed content.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="publication-image">Article Collection Image Placeholder</div>
-                        <h4 class="publication-title">Excellent Article Collection</h4>
-                        <div class="publication-description">
-                            <p>A collection of excellent articles I wrote during high school, including academic papers, reading reflections, social observations, and various other types of works.</p>
-                            <p>These articles showcase my thinking process and the growth trajectory of my writing abilities. Click 
-                            <a href="#" class="publication-link"><strong>HERE</strong></a> to read the full text.</p>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="publication-image">Project Results Image Placeholder</div>
-                        <h4 class="publication-title">Research Project Results</h4>
-                        <div class="publication-description">
-                            <p>Showcasing the results of various research projects I participated in, including experimental reports, research analyses, innovative designs, etc.</p>
-                            <p>These projects allowed me to combine theoretical knowledge with practice, cultivating basic scientific research literacy. Click 
-                            <a href="#" class="publication-link"><strong>HERE</strong></a> to learn about project details.</p>
-                        </div>
-                    </div>
+                <div class="section-content">
+                    <strong>• School Journal</strong> — contributing to the school publication, learning editorial work and collaboration
                 </div>
-            </section>
-        </main>
+                <div class="media-placeholder">校刊合照</div>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Letters / Messages</h3>
+                <div class="section-content">
+                    Notes, texts, cards — moments of being understood.
+                </div>
+                <div class="section-content">
+                    To: my teacher, who said "your silence is a kind of poem." For: patience, feedback, kindness. Paid: eternal gratitude.
+                </div>
+                <div class="media-placeholder">我和朋友/老师的信件/礼物，体现人际交往，多张照片</div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Smooth scroll to specified sections
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.nav-link');
-            
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const offsetTop = targetElement.offsetTop - 100;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+        }
 
-            // Highlight current section navigation links
-            window.addEventListener('scroll', function() {
-                const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                let currentSection = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection) {
-                        link.classList.add('active');
-                    }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for items
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.item-title').textContent;
+                    console.log(`Clicked on: ${title}`);
                 });
             });
         });
