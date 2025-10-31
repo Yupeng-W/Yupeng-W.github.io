@@ -19,9 +19,10 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px 40px;
+            position: relative;
         }
 
         .header {
@@ -171,10 +172,10 @@
         }
 
         .about-image {
-            width: 200px;
-            height: 200px;
+            width: 540px;
+            height: 540px;
             background-color: #f5f5f5;
-            margin: 20px auto;
+            margin: 40px auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,6 +245,59 @@
             background: #f5f5f5;
         }
 
+        /* Decorative logos */
+        .top-logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 432px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .top-left-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 414px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        /* Responsive design for logos */
+        @media (max-width: 768px) {
+            .top-logo {
+                max-width: 324px;
+                margin: 15px auto;
+            }
+            
+            .top-left-logo {
+                max-width: 306px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .container {
+                padding-top: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-logo {
+                max-width: 270px;
+                margin: 10px auto;
+            }
+            
+            .top-left-logo {
+                max-width: 252px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .container {
+                padding-top: 60px;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -270,6 +324,10 @@
     </style>
 </head>
 <body>
+    <!-- Decorative logos -->
+    <img src="images/top_logo.png" alt="Top Logo" class="top-logo">
+    <img src="images/top_left_logo.png" alt="Top Left Logo" class="top-left-logo">
+    
     <div class="container">
         <!-- Home Page -->
         <div id="home" class="page-section active">
@@ -281,7 +339,7 @@
             <div class="navigation">
                 <div class="nav-card" onclick="showPage('about')">
                     <div class="nav-card-image">
-                        Personal Photo Placeholder
+                        <img src="images/My_Photo_Placeholder.jpg" alt="Personal Photo" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ About</h3>
@@ -326,7 +384,7 @@
                 </div>
 
                 <div class="about-image">
-                    My Photo Placeholder
+                    <img src="images/My_Photo_Placeholder.jpg" alt="My Photo" style="width:100%;height:100%;object-fit:cover;">
                 </div>
 
                 <div class="about-text">
@@ -448,7 +506,9 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Coffee Cup Image</div>
+                    <div class="item-image">
+                        <img src="images/coffee_cup.jpg" alt="Coffee Cup" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Coffee Cup</h3>
                         <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
@@ -528,9 +588,46 @@
             
             // Show selected page
             document.getElementById(pageId).classList.add('active');
+            
+            // Update browser history
+            if (pageId === 'home') {
+                history.pushState({page: pageId}, '', '/');
+            } else {
+                history.pushState({page: pageId}, '', `/#${pageId}`);
+            }
         }
 
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                const pageId = event.state.page;
+                // Hide all pages
+                const pages = document.querySelectorAll('.page-section');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                // Show the page from history
+                document.getElementById(pageId).classList.add('active');
+            } else {
+                // Default to home page
+                const pages = document.querySelectorAll('.page-section');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById('home').classList.add('active');
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Set initial history state
+            history.replaceState({page: 'home'}, '', '/');
+            
+            // Handle initial page load based on URL hash
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+            
             // Add click handlers for items
             const items = document.querySelectorAll('.item');
             items.forEach(item => {
